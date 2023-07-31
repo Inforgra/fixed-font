@@ -275,7 +275,6 @@
       (setq face-font-rescale-alist `((,fixed-font-hangul-font . ,rescale)))
       (setq fixed-font-current-height height))))
 
-;;;###autoload
 (defun fixed-font-set-default ()
   "글꼴의 크기를 기본크기로 지정한다."
   (interactive)
@@ -283,14 +282,12 @@
   (set-face-attribute 'default nil :family fixed-font-ascii-font)
   (fixed-font-set-height fixed-font-default-height))
 
-;;;###autoload
 (defun fixed-font-increase ()
   "글꼴의 크기를 한 단계(10) 늘린다."
   (interactive)
   (let ((new-height (+ fixed-font-current-height 10)))
     (fixed-font-set-height new-height)))
 
-;;;###autoload
 (defun fixed-font-decrease ()
   "글꼴의 크기를 한 단계(10) 줄인다."
   (interactive)
