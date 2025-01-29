@@ -86,6 +86,14 @@
     (setq face-font-rescale-alist `((,fixed-font-hangul-font . ,rescale)))
     (set-face-attribute 'default nil :height height)))
 
+(defun test-fixed-font-scale (ascii-font hangul-font height scale)
+  "영문글꼴(ASCII-FONT)과 한글글꼴(HANGUL-FONT)에서 크기(HEIGHT)에 따른 비율(SCALE)을 테스트한다."
+  (set-face-attribute 'default nil :family ascii-font)
+  (set-fontset-font "fontset-default" 'hangul hangul-font nil 'prepend)
+  (setq face-font-rescale-alist `((,hangul-font . ,scale)))
+  (set-face-attribute 'default nil :height 60)
+  (set-face-attribute 'default nil :height height))
+
 ;;;###autoload
 (defun fixed-font-default ()
   "글꼴의 크기를 fixed-font-default-height로 설정한다."
