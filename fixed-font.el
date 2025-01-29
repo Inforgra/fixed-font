@@ -34,52 +34,10 @@
 (defconst fixed-font-rescale-list ())
 
 (add-to-list 'fixed-font-rescale-list
- '(("Default" "Default")
-   ((70  . 1.20) (80  . 1.30) (90  . 1.25) (100 . 1.20) (110 . 1.20)
-    (120 . 1.20) (130 . 1.25) (140 . 1.22) (150 . 1.20) (160 . 1.20)
-    (170 . 1.20) (180 . 1.20) (190 . 1.22) (200 . 1.20) (210 . 1.20))))
-
-(add-to-list 'fixed-font-rescale-list
- '(("NanumGothicCoding" "나눔고딕코딩" "Anonymous Pro")
-   ((70  . 1.08) (80  . 1.30) (90  . 1.08) (100 . 1.08) (110 . 1.10)
-    (120 . 1.10) (130 . 1.08) (140 . 1.08) (150 . 1.08) (160 . 1.08)
-    (170 . 1.12) (180 . 1.12) (190 . 1.12) (200 . 1.12) (210 . 1.12))))
-
-(add-to-list 'fixed-font-rescale-list
- '(("NanumGothicCoding" "나눔고딕코딩" "Inconsolata")
-   ((70  . 1.00) (80  . 1.30) (90  . 1.00) (100 . 1.00) (110 . 1.00)
-    (120 . 1.00) (130 . 1.00) (140 . 1.00) (150 . 1.00) (160 . 1.00)
-    (170 . 1.00) (180 . 1.00) (190 . 1.00) (200 . 1.00) (210 . 1.00))))
-
-(add-to-list 'fixed-font-rescale-list
- '(("NanumGothicCoding" "나눔고딕코딩" "Ubuntu Mono")
-   ((70  . 1.00) (80  . 1.30) (90  . 1.00) (100 . 1.00) (110 . 1.00)
-    (120 . 1.00) (130 . 1.00) (140 . 1.00) (150 . 1.00) (160 . 1.00)
-    (170 . 1.00) (180 . 1.00) (190 . 1.00) (200 . 1.00) (210 . 1.00))))
-
-(add-to-list 'fixed-font-rescale-list
- '(("NanumGothicCoding" "나눔고딕코딩" "B612 Mono")
-   ((70  . 1.32) (80  . 1.30) (90  . 1.34) (100 . 1.32) (110 . 1.30)
-    (120 . 1.34) (130 . 1.32) (140 . 1.32) (150 . 1.34) (160 . 1.32)
-    (170 . 1.32) (180 . 1.30) (190 . 1.32) (200 . 1.32) (210 . 1.32))))
-
-(add-to-list 'fixed-font-rescale-list
- '(("NanumGothicCoding" "나눔고딕코딩" "Space Mono")
-   ((70  . 1.26) (80  . 1.30) (90  . 1.26) (100 . 1.26) (110 . 1.26)
-    (120 . 1.26) (130 . 1.26) (140 . 1.22) (150 . 1.22) (160 . 1.26)
-    (170 . 1.26) (180 . 1.24) (190 . 1.22) (200 . 1.22) (210 . 1.24))))
-
-(add-to-list 'fixed-font-rescale-list
- '(("NanumGothicCoding" "나눔고딕코딩" "VT323")
-   ((70  . 0.84) (80  . 1.30) (90  . 0.84) (100 . 0.84) (110 . 0.84)
-    (120 . 0.84) (130 . 0.84) (140 . 0.84) (150 . 0.84) (160 . 0.84)
-    (170 . 0.84) (180 . 0.80) (190 . 0.80) (200 . 0.80) (210 . 0.82))))
-
-(add-to-list 'fixed-font-rescale-list
- '(("Malgun Gothic" "맑은 고딕" "Source Code Pro")
-   ((70  . 1.08) (80  . 1.30) (90  . 1.08) (100 . 1.20) (110 . 1.24)
-    (120 . 1.20) (130 . 1.20) (140 . 1.24) (150 . 1.20) (160 . 1.20)
-    (170 . 1.24) (180 . 1.20) (190 . 1.21) (200 . 1.24) (210 . 1.20))))
+ '(("NanumGothicCoding" "Source Code Pro")
+   ((70  . 1.10) (80  . 1.24) (90  . 1.20) (100 . 1.20) (110 . 1.23)
+    (120 . 1.20) (130 . 1.20) (140 . 1.22) (150 . 1.20) (160 . 1.20)
+    (170 . 1.20) (180 . 1.20) (190 . 1.20) (200 . 1.20) (210 . 1.20))))
 
 (defun fixed-font--search (hangul ascii)
   "한글(HANGUL)과 영문(ASCII) 글꼴의 설정을 찾아 반환한다."
@@ -123,9 +81,10 @@
     (when (< height min-height) (error "글꼴의 설정이 %d 보다 작을 수 없습니다" min-height))
     (when (> height max-height) (error "글꼴의 설정이 %d 보다 클 수 없습니다" max-height))
     (message "한글글꼴: %s, 영문글꼴: %s, 글꼴크기: %d, 비율: %0.2f" fixed-font-hangul-font fixed-font-ascii-font height rescale)
-    (set-fontset-font t 'hangul (font-spec :family fixed-font-hangul-font))
+    (set-face-attribute 'default nil :family fixed-font-ascii-font)
+    (set-fontset-font "fontset-default" 'hangul fixed-font-hangul-font nil 'prepend)
     (setq face-font-rescale-alist `((,fixed-font-hangul-font . ,rescale)))
-    (set-face-attribute 'default nil :family fixed-font-ascii-font :height height)))
+    (set-face-attribute 'default nil :height height)))
 
 ;;;###autoload
 (defun fixed-font-default ()
