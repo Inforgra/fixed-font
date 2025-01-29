@@ -22,48 +22,55 @@
 
 이 Github 에서 복제하거나 \`package-vc-install\` 을 사용하여 설치한다.
 
-    (package-installed-p `fixed-font
-                         (package-vc-install "https://github.com/kj-kang/fixed-font"))
-
-
+```lisp
+(package-installed-p `fixed-font
+                     (package-vc-install "https://github.com/Inforgra/fixed-font"))
+```
 <a id="org13ac781"></a>
 
 ## 글꼴 설정하기
 
 한글 글꼴은 \`fixed-font-hangul-font\` 변수에 지정한다.
 
-    (setq fixed-font-hangul-font "NanumGothicCoding")
+```lisp
+(setq fixed-font-hangul-font "NanumGothicCoding")
+```
 
 영문 글꼴은 \`fixed-font-ascii-font\` 변수에 지정한다.
 
-    (setq fixed-font-ascii-font "Source Code Pro")
+```lisp
+(setq fixed-font-ascii-font "Source Code Pro")
+```
 
 글꼴의 크기는 \`fixed-font-default-height\` 변수에 지정한다.
 
-    (setq fixed-font-default-height 100)
+```lisp
+(setq fixed-font-default-height 100)
+```
 
 같은 고정폭 형태의 글꼴이라 하더라도 모두 같은 폭을 가지지 않는다. 또한 글꼴의 크기에 따라 비율이 달라질 수 있다. \`fixed-font-rescale-list\` 에 설정을 추가하여, 글꼴간의 비율을 변경할 수 있다.
 
-    (add-to-list `fixed-font-rescale-list
-           (("NanumGothicCoding" . "Source Code Pro")
-      (70  . 1.20) (80  . 1.30) (90  . 1.25)
-      (100 . 1.20) (110 . 1.20) (120 . 1.20)))
-
+```lisp
+(add-to-list `fixed-font-rescale-list
+  '(("NanumGothicCoding" "Source Code Pro")
+    (70  . 1.20) (80  . 1.30) (90  . 1.25) (100 . 1.20) (110 . 1.20) (120 . 1.20)))
+```
 
 <a id="orga251f6c"></a>
 
 ## \`use-package\` 를 사용하여 설정하기
 
-    (use-package fixed-font
-      :bind
-      ("C-0" . fixed-font-default)
-      ("C-+" . fixed-font-increase)
-      ("C--" . fixed-font-decrease)
-      :custom
-      (fixed-font-hangul-font "NanumGothicCoding")
-      (fixed-font-ascii-font "Source Code Pro")
-      (fixed-font-default-height 160))
-
+```lisp
+(use-package fixed-font
+  :bind
+  ("C-0" . fixed-font-default)
+  ("C-+" . fixed-font-increase)
+  ("C--" . fixed-font-decrease)
+  :custom
+  (fixed-font-hangul-font "NanumGothicCoding")
+  (fixed-font-ascii-font "Source Code Pro")
+  (fixed-font-default-height 160))
+```
 
 <a id="org8556ed8"></a>
 
