@@ -48,10 +48,10 @@
 	  fixed-font-rescale-list))
 
 (defun fixed-font-search ()
-  "한글과 영문 글꼴의 설정을 찾아 반환한다.  만약 설정에 없는 경우 기본값으로 반환한다."
+  "한글과 영문 글꼴의 설정을 찾아 반환한다.  만약 설정에 없는 경우 에러를 발생한다."
   (let ((font-config (fixed-font--search fixed-font-hangul-font fixed-font-ascii-font)))
     (if (eq font-config nil)
-	      (fixed-font--search "Default" "Default")
+	      (error "글꼴에 대한 스케일 설정이 없습니다")
       font-config)))
     
 (defun fixed-font--min-height ()
@@ -101,7 +101,6 @@
   (fixed-font--set-height fixed-font-default-height)
   (setq fixed-font-current-height fixed-font-default-height))
 
-
 ;;;###autoload
 (defun fixed-font-increase ()
   "글꼴의 크기를 한단계(10) 크게 설정한다."
@@ -119,5 +118,4 @@
     (setq fixed-font-current-height new-height)))
 
 (provide 'fixed-font)
-
 ;;; fixed-font.el ends here
