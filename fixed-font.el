@@ -1,10 +1,10 @@
 ;;; fixed-font.el --- 한글 고정폭 글꼴 설정 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2023-2024 Inforgra
+;; Copyright (C) 2023-2025 Inforgra
 
 ;; Author: Inforga <inforgax@gmail.com>
 ;; Keywords: font
-;; Version: 0.1.0
+;; Version: 0.1.1
 
 ;;; Commentary:
 ;;
