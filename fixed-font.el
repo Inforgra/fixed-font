@@ -82,14 +82,14 @@
     (when (> height max-height) (error "글꼴의 설정이 %d 보다 클 수 없습니다" max-height))
     (message "한글글꼴: %s, 영문글꼴: %s, 글꼴크기: %d, 비율: %0.2f" fixed-font-hangul-font fixed-font-ascii-font height rescale)
     (set-face-attribute 'default nil :family fixed-font-ascii-font)
-    (set-fontset-font "fontset-default" 'hangul fixed-font-hangul-font nil 'prepend)
+    (set-fontset-font "fontset-default" 'hangul fixed-font-hangul-font nil)
     (setq face-font-rescale-alist `((,fixed-font-hangul-font . ,rescale)))
     (set-face-attribute 'default nil :height height)))
 
 (defun test-fixed-font-scale (ascii-font hangul-font height scale)
   "영문글꼴(ASCII-FONT)과 한글글꼴(HANGUL-FONT)에서 크기(HEIGHT)에 따른 비율(SCALE)을 테스트한다."
   (set-face-attribute 'default nil :family ascii-font)
-  (set-fontset-font "fontset-default" 'hangul hangul-font nil 'prepend)
+  (set-fontset-font "fontset-default" 'hangul hangul-font nil)
   (setq face-font-rescale-alist `((,hangul-font . ,scale)))
   (set-face-attribute 'default nil :height 60)
   (set-face-attribute 'default nil :height height))
