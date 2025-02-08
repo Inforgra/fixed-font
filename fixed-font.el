@@ -51,7 +51,7 @@
   "한글과 영문 글꼴의 설정을 찾아 반환한다.  만약 설정에 없는 경우 에러를 발생한다."
   (let ((font-config (fixed-font--search fixed-font-hangul-font fixed-font-ascii-font)))
     (if (eq font-config nil)
-	      (error "글꼴에 대한 스케일 설정이 없습니다")
+	      (error "글꼴에 대한 스케일 설정이 없습니다 - %s %s" fixed-font-ascii-font fixed-font-hangul-font)
       font-config)))
     
 (defun fixed-font--min-height ()
